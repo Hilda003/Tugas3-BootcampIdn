@@ -3,6 +3,7 @@ package com.bootcamp.tugas3_bootcampidn
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bootcamp.tugas3_bootcampidn.adapter.NewsAdapter
 import com.bootcamp.tugas3_bootcampidn.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
