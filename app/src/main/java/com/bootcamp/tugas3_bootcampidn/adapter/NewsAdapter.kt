@@ -3,25 +3,30 @@ package com.bootcamp.tugas3_bootcampidn.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bootcamp.tugas3_bootcampidn.ArticlesItem
 import com.bootcamp.tugas3_bootcampidn.News
+import com.bootcamp.tugas3_bootcampidn.R
 import com.bootcamp.tugas3_bootcampidn.databinding.ItemRowNewsBinding
+import com.bumptech.glide.Glide
 
-class NewsAdapter(private val newsList: List<News>) :
+class NewsAdapter() :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+    private var newsList : List<ArticlesItem> = listOf()
     inner class NewsViewHolder(private val binding: ItemRowNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: News) {
+        fun bind(data: ArticlesItem) {
             binding.apply {
-                imgNews.setImageResource(data.imgNews)
-                tvJudul.text = data.titleNews
+                tvJudul.text = data.title
+                tvTanggalPosting.text = data.publishedAt
                 tvPenulis.text = data.author
-                tvTanggalPosting.text = data.dateNews
-                binding.cardNews.setOnClickListener {
-                    // TODO code intent here
-                }
+                Glide.with(imgNews)
+                    .load(data.urlToImage)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(imgNews)
+            }
             }
         }
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -35,5 +40,10 @@ class NewsAdapter(private val newsList: List<News>) :
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         return holder.bind(newsList[position])
+    }
+
+    fun setData(data : List<ArticlesItem>){
+        newsList = data
+        notifyDataSetChanged()
     }
 }

@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object ApiConfig {
-    private const val baseUrl = "https://newsapi.org/v2/top-headlines?country=id&apiKey=f044de69086e45198f8406be2094a229"
+    private const val baseUrl = "https://newsapi.org/v2/"
 
     private fun getRetrofit() : Retrofit {
         return Retrofit.Builder()
