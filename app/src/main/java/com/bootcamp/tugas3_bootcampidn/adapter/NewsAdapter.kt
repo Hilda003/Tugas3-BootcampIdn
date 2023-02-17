@@ -1,9 +1,11 @@
 package com.bootcamp.tugas3_bootcampidn.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bootcamp.tugas3_bootcampidn.ArticlesItem
+import com.bootcamp.tugas3_bootcampidn.DetailNewsActivity
 import com.bootcamp.tugas3_bootcampidn.News
 import com.bootcamp.tugas3_bootcampidn.R
 import com.bootcamp.tugas3_bootcampidn.databinding.ItemRowNewsBinding
@@ -23,7 +25,14 @@ class NewsAdapter() :
                     .load(data.urlToImage)
                     .error(R.drawable.ic_launcher_background)
                     .into(imgNews)
+
+                cardNews.setOnClickListener {
+                    val intent = Intent(itemView.context, DetailNewsActivity::class.java)
+                    intent.putExtra(DetailNewsActivity.detail, data)
+                    itemView.context.startActivity(intent)
+                }
             }
+
             }
         }
 
